@@ -6,8 +6,7 @@ import playerDetailsReducer from './reducers/playerDetailsReducer';
 import seasonAveragesReducer from './reducers/seasonAveragesReducer';
 
 const reducer = combineReducers({
-  player: playerDetailsReducer,
-  seasonAverages: seasonAveragesReducer
+  players: playerDetailsReducer
 });
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));

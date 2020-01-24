@@ -26,6 +26,7 @@ export const fetchSeasonAverages = ids => {
         responses.push(value.data);
       });
     });
+    console.log(responses);
     dispatch({
       type: 'GET_SEASON_AVERAGES',
       data: responses

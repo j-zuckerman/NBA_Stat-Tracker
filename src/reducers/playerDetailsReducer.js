@@ -17,18 +17,33 @@ const playerDetailsReducer = (state = initialState, action) => {
 };
 
 export const fetchPlayerDetails = ids => {
-  return async dispatch => {
-    let responses = [];
+  var playerInformations = [];
+  let playerDetails = { playerInfo: [], seasonAverages: [] };
+  var seasonAverages = [];
+  return dispatch => {
     Promise.all(ids.map(id => NBA_api.get(`/players/${id}`))).then(
       resolvedValues => {
         resolvedValues.forEach(value => {
-          responses.push(value.data);
+          let playerInfo = value.data;
+          playerDetails.playerInfo.push(playerInfo);
         });
       }
     );
+
+    Promise.all(
+      ids.map(id => NBA_api.get(`season_averages?player_ids[]=${id}`))
+    ).then(resolvedValues => {
+      resolvedValues.forEach(value => {
+        let seasonAverage = value.data;
+        playerDetails.seasonAverages.push(seasonAverage);
+      });
+    });
+
+    console.log(playerDetails);
+
     dispatch({
       type: 'GET_PLAYER_DETAILS',
-      data: responses
+      data: playerDetails
     });
   };
 };

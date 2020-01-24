@@ -1,38 +1,39 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchSeasonAverages } from '../reducers/seasaonAveragesReducer';
+import Player from './player';
+import PlayerDetails from './playerDetails';
+import SeasonAverages from './seasonAverages';
+import { fetchSeasonAverages } from '../reducers/seasonAveragesReducer';
+import { fetchPlayerDetails } from '../reducers/playerDetailsReducer';
 
-const SeasonAverage = props => {
-  return (
-    <ul>
-      {props.visibleNotes.map(note => (
-        <Note
-          key={note.id}
-          note={note}
-          handleClick={() => props.toggleImportanceOf(note.id)}
+const Players = props => {
+  useEffect(() => {
+    props.fetchPlayerDetails([237, 118]);
+  }, []);
+
+  return props.playerStats ? (
+    <div>
+      {props.playerStats.playerInfo.map((player, index) => (
+        <Player
+          details={player}
+          seasonAverage={props.playerStats.seasonAverages[index]}
         />
       ))}
-    </ul>
+    </div>
+  ) : (
+    <div>loading</div>
   );
-};
-
-const notesToShow = ({ notes, filter }) => {
-  if (filter === 'ALL') {
-    return notes;
-  }
-  return filter === 'IMPORTANT'
-    ? notes.filter(note => note.important)
-    : notes.filter(note => !note.important);
 };
 
 const mapStateToProps = state => {
   return {
-    visibleNotes: notesToShow(state)
+    playerStats: state.players.details
   };
 };
 
 const mapDispatchToProps = {
-  toggleImportanceOf
+  fetchPlayerDetails
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notes);
+export default connect(mapStateToProps, mapDispatchToProps)(Players);

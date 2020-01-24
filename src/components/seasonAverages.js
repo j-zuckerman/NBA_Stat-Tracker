@@ -1,42 +1,13 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import Note from './Note'
-import { toggleImportanceOf } from '../reducers/noteReducer'
+import React from 'react';
 
-const Notes = (props) => {
+const SeasonAverages = ({ seasonAverages }) => {
   return (
-    <ul>
-      {props.visibleNotes.map(note => 
-        <Note
-          key={note.id}
-          note={note}
-          handleClick={() => props.toggleImportanceOf(note.id)}
-        />
-      )}
-    </ul>
-  )
-}
+    <div>
+      {seasonAverages.data.map(seasonAverage => (
+        <p>{seasonAverage.games_played}</p>
+      ))}
+    </div>
+  );
+};
 
-const notesToShow = ({ notes, filter }) => { 
-  if (filter === 'ALL') {
-    return notes
-  }
-  return filter === 'IMPORTANT'
-    ? notes.filter(note => note.important)
-    : notes.filter(note => !note.important)
-}
-
-const mapStateToProps = (state) => {
-  return {
-    visibleNotes: notesToShow(state), 
-  }
-}
-
-const mapDispatchToProps = {
-  toggleImportanceOf,
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Notes)
+export default SeasonAverages;
