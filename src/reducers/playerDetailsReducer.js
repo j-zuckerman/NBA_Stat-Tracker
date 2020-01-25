@@ -18,7 +18,7 @@ const playerDetailsReducer = (state = initialState, action) => {
 
 export const fetchPlayerDetails = ids => {
   var playerInformations = [];
-  let playerDetails = { playerInfo: [], seasonAverages: [] };
+  let playerDetails = { playerInfo: [], seasonAverages: [], stats: [] };
   var seasonAverages = [];
   return dispatch => {
     Promise.all(ids.map(id => NBA_api.get(`/players/${id}`))).then(
@@ -31,11 +31,26 @@ export const fetchPlayerDetails = ids => {
     );
 
     Promise.all(
-      ids.map(id => NBA_api.get(`season_averages?player_ids[]=${id}`))
+      ids.map(id =>
+        NBA_api.get(`season_averages?season=2018&player_ids[]=${id}`)
+      )
     ).then(resolvedValues => {
       resolvedValues.forEach(value => {
         let seasonAverage = value.data;
         playerDetails.seasonAverages.push(seasonAverage);
+      });
+    });
+
+    Promise.all(
+      ids.map(id =>
+        NBA_api.get(
+          `stats?player_ids[]=${id}&seasons[]=2018&seasons[]=2019&per_page=82`
+        )
+      )
+    ).then(resolvedValues => {
+      resolvedValues.forEach(value => {
+        let stat = value.data;
+        playerDetails.stats.push(stat);
       });
     });
 

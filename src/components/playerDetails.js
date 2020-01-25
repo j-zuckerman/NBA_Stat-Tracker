@@ -3,8 +3,8 @@ import React from 'react';
 const PlayerDetails = ({ details }) => {
   return (
     <div>
-      hi
-      <p>{details.first_name}</p>
+      <h4>{details.first_name + ' ' + details.last_name}</h4>
+      <p>{details.position + ' | ' + details.team.name}</p>
     </div>
   );
 };

@@ -18,6 +18,7 @@ const Players = props => {
         <Player
           details={player}
           seasonAverage={props.playerStats.seasonAverages[index]}
+          stats={props.playerStats.stats[index]}
         />
       ))}
     </div>
