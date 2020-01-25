@@ -1,6 +1,6 @@
 import React from 'react';
 import PlayerDetails from './playerDetails';
-import SeasonAverages from './seasonAverages';
+import { SeasonAverages } from './seasonAverages';
 
 const Player = ({ details, seasonAverage }) => {
   return (
