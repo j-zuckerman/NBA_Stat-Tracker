@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const LastTenGamesStats = ({ stats }) => {
+  console.log(stats);
   let rows = [];
 
   const useStyles = makeStyles({
@@ -60,33 +61,36 @@ const LastTenGamesStats = ({ stats }) => {
       ft_pct
     };
   }
-  let lastTenStats = stats.data.slice(Math.max(stats.data.length - 10, 1));
+  if (stats) {
+    var lastTenStats = stats.data.slice(Math.max(stats.data.length - 10, 1));
 
-  lastTenStats.forEach(element => {
-    rows.push(
-      createData(
-        element.min,
-        element.fgm,
-        element.fga,
-        element.fg3m,
-        element.fg3a,
-        element.ftm,
-        element.fta,
-        element.oreb,
-        element.dreb,
-        element.reb,
-        element.ast,
-        element.stl,
-        element.blk,
-        element.turnover,
-        element.pf,
-        element.pts,
-        element.fg_pct,
-        element.fg3_pct,
-        element.ft_pct
-      )
-    );
-  });
+    console.log(lastTenStats);
+    lastTenStats.forEach(element => {
+      rows.push(
+        createData(
+          element.min,
+          element.fgm,
+          element.fga,
+          element.fg3m,
+          element.fg3a,
+          element.ftm,
+          element.fta,
+          element.oreb,
+          element.dreb,
+          element.reb,
+          element.ast,
+          element.stl,
+          element.blk,
+          element.turnover,
+          element.pf,
+          element.pts,
+          element.fg_pct,
+          element.fg3_pct,
+          element.ft_pct
+        )
+      );
+    });
+  }
 
   console.log(rows);
 
