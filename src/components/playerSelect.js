@@ -25,7 +25,6 @@ export const PlayerSelect = ({ playerNames, handleChange }) => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  console.log(playerNames);
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">

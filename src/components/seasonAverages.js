@@ -10,7 +10,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 export const SeasonAverages = ({ seasonAverages }) => {
-  console.log(seasonAverages);
   let rows = [];
 
   const useStyles = makeStyles({

@@ -9,7 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const LastTenGamesStats = ({ stats }) => {
-  console.log(stats);
   let rows = [];
 
   const useStyles = makeStyles({
@@ -64,7 +63,6 @@ const LastTenGamesStats = ({ stats }) => {
   if (stats) {
     var lastTenStats = stats.data.slice(Math.max(stats.data.length - 10, 1));
 
-    console.log(lastTenStats);
     lastTenStats.forEach(element => {
       rows.push(
         createData(
@@ -91,8 +89,6 @@ const LastTenGamesStats = ({ stats }) => {
       );
     });
   }
-
-  console.log(rows);
 
   return (
     <TableContainer component={Paper}>
