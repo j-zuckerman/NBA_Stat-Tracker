@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 export const SeasonAverages = ({ seasonAverages }) => {
+  console.log(seasonAverages);
   let rows = [];
 
   const useStyles = makeStyles({
@@ -63,32 +64,33 @@ export const SeasonAverages = ({ seasonAverages }) => {
       ft_pct
     };
   }
-
-  rows.push(
-    createData(
-      seasonAverages.data[0].games_played,
-      seasonAverages.data[0].min,
-      seasonAverages.data[0].fgm,
-      seasonAverages.data[0].fga,
-      seasonAverages.data[0].fg3m,
-      seasonAverages.data[0].fg3a,
-      seasonAverages.data[0].ftm,
-      seasonAverages.data[0].fta,
-      seasonAverages.data[0].oreb,
-      seasonAverages.data[0].dreb,
-      seasonAverages.data[0].reb,
-      seasonAverages.data[0].ast,
-      seasonAverages.data[0].stl,
-      seasonAverages.data[0].blk,
-      seasonAverages.data[0].turnover,
-      seasonAverages.data[0].pf,
-      seasonAverages.data[0].pts,
-      seasonAverages.data[0].fg_pct,
-      seasonAverages.data[0].fg3_pct,
-      seasonAverages.data[0].ft_pct
-    )
-  );
-  console.log(rows);
+  if (seasonAverages) {
+    rows.push(
+      createData(
+        seasonAverages.data[0].games_played,
+        seasonAverages.data[0].min,
+        seasonAverages.data[0].fgm,
+        seasonAverages.data[0].fga,
+        seasonAverages.data[0].fg3m,
+        seasonAverages.data[0].fg3a,
+        seasonAverages.data[0].ftm,
+        seasonAverages.data[0].fta,
+        seasonAverages.data[0].oreb,
+        seasonAverages.data[0].dreb,
+        seasonAverages.data[0].reb,
+        seasonAverages.data[0].ast,
+        seasonAverages.data[0].stl,
+        seasonAverages.data[0].blk,
+        seasonAverages.data[0].turnover,
+        seasonAverages.data[0].pf,
+        seasonAverages.data[0].pts,
+        seasonAverages.data[0].fg_pct,
+        seasonAverages.data[0].fg3_pct,
+        seasonAverages.data[0].ft_pct
+      )
+    );
+  }
+  // console.log(rows);
 
   return (
     <TableContainer component={Paper}>
