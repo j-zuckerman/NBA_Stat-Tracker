@@ -1,11 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Player from './player';
-import PlayerDetails from './playerDetails';
-import SeasonAverages from './seasonAverages';
 import NBA_api from '../api/NBA_api';
 import { PlayerSelect } from './playerSelect';
-import LastTenGamesStats from './lastTenGamesStats';
+import { LastTenGamesStats } from './lastTenGamesStats';
+import Divider from '@material-ui/core/Divider';
 import { Chart } from './chart';
 
 const Players = () => {
@@ -14,44 +13,43 @@ const Players = () => {
   const [playerDetails, setPlayerDetails] = useState([]);
   const [seasonAverages, setSeasonAverages] = useState([]);
   const [lastTenGameStats, setLastTenGameStats] = useState([]);
+  const [playersStats, setPlayersStats] = useState([]);
 
   async function fetchPlayerDetails(id) {
     const res = await NBA_api.get(`/players/${id}`);
-   
-    setPlayerDetails(playerDetails => [...playerDetails, res.data]);
+    return res.data;
   }
 
   async function fetchSeasonAverages(id) {
     const res = await NBA_api.get(
       `season_averages?season=2018&player_ids[]=${id}`
     );
-   
-    setSeasonAverages(seasonAverages => [...seasonAverages, res.data]);
+
+    return res.data;
   }
 
   async function fetchLastTenGameStats(id) {
     const res = await NBA_api.get(
       `stats?player_ids[]=${id}&seasons[]=2018&seasons[]=2019&per_page=82`
     );
-   
-    setLastTenGameStats(lastTenGameStats => [...lastTenGameStats, res.data]);
+    return res.data;
   }
-  // useEffect(() => {
-  //   console.log(playerDetails);
-  // }, [playerDetails]);
+
+  async function fetchFullPlayerStats(id) {
+    const playerDetails = await fetchPlayerDetails(id);
+    const seasonAverages = await fetchSeasonAverages(id);
+    const lastTenGamesStats = await fetchLastTenGameStats(id);
+    console.log(playerDetails);
+    const playerStat = { playerDetails, seasonAverages, lastTenGamesStats };
+    setPlayersStats(playersStats => [...playersStats, playerStat]);
+  }
 
   useEffect(() => {
-    fetchPlayerDetails(237);
-    fetchSeasonAverages(237);
-    fetchLastTenGameStats(237);
+    console.log(playersStats);
+  }, [playersStats]);
 
-    fetchPlayerDetails(120);
-    fetchSeasonAverages(120);
-    fetchLastTenGameStats(120);
-
-    fetchPlayerDetails(110);
-    fetchSeasonAverages(110);
-    fetchLastTenGameStats(110);
+  useEffect(() => {
+    fetchFullPlayerStats(237);
   }, []);
 
   const handleChange = event => {
@@ -60,14 +58,21 @@ const Players = () => {
 
   return (
     <div>
-      {playerDetails.map((player, index) => (
-        <Player details={player} seasonAverage={seasonAverages[index]} />
+      <h1 className="center">’18 to ’19 Season Averages</h1>
+      <Divider light />
+      {playersStats.map((player, index) => (
+        <Player
+          details={player.playerDetails}
+          seasonAverage={player.seasonAverages}
+        />
       ))}
-      <PlayerSelect handleChange={handleChange} playerNames={playerDetails} />
-      <Chart stats={lastTenGameStats} />
-      <LastTenGamesStats stats={lastTenGameStats[selected]} />
+
+      <h1 className="center">All Stats For Last 10 Games Played</h1>
+      <PlayerSelect handleChange={handleChange} playerStats={playersStats} />
+      <Divider light />
+      <LastTenGamesStats playerDetails={playersStats[selected]} />
     </div>
   );
 };
-
+//<Chart playerDetails={playersStats} />
 export default Players;

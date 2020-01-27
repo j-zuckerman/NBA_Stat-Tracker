@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const PlayerSelect = ({ playerNames, handleChange }) => {
+export const PlayerSelect = ({ playerStats, handleChange }) => {
   const classes = useStyles();
 
   const inputLabel = React.useRef(null);
@@ -36,9 +36,11 @@ export const PlayerSelect = ({ playerNames, handleChange }) => {
         labelWidth={labelWidth}
         onChange={handleChange}
       >
-        {playerNames.map((playerName, index) => (
+        {playerStats.map((player, index) => (
           <MenuItem value={index}>
-            {playerName.first_name + ' ' + playerName.last_name}
+            {player.playerDetails.first_name +
+              ' ' +
+              player.playerDetails.last_name}
           </MenuItem>
         ))}
       </Select>

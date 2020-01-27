@@ -1,0 +1,9 @@
+body,
+html {
+  background: #212121;
+  color: #eceff1;
+}
+
+.center {
+  text-align: center;
+}

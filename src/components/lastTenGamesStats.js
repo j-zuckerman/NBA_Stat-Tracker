@@ -8,14 +8,28 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const LastTenGamesStats = ({ stats }) => {
+export const LastTenGamesStats = ({ playerDetails, selected }) => {
   let rows = [];
 
   const useStyles = makeStyles({
     table: {
       minWidth: 650
+    },
+
+    color: {
+      backgroundColor: '#212121'
+    },
+
+    tableCell: {
+      color: '#eceff1'
+    },
+    tableHeader: {
+      color: 'gray',
+      textTransform: 'uppercase'
     }
   });
+
+  const classes = useStyles();
 
   function createData(
     min,
@@ -60,8 +74,10 @@ const LastTenGamesStats = ({ stats }) => {
       ft_pct
     };
   }
-  if (stats) {
-    var lastTenStats = stats.data.slice(Math.max(stats.data.length - 10, 1));
+  if (playerDetails) {
+    var lastTenStats = playerDetails.lastTenGamesStats.data.slice(
+      Math.max(playerDetails.lastTenGamesStats.data.length - 10, 1)
+    );
 
     lastTenStats.forEach(element => {
       rows.push(
@@ -92,53 +108,130 @@ const LastTenGamesStats = ({ stats }) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table size="small" aria-label="a dense table">
+      <Table
+        className={(classes.table, classes.color)}
+        aria-label="simple table"
+      >
         <TableHead>
           <TableRow>
-            <TableCell>GP</TableCell>
+            <TableCell className={classes.tableHeader}>MIN</TableCell>
 
-            <TableCell align="right">fgm</TableCell>
-            <TableCell align="right">fga</TableCell>
-            <TableCell align="right">fg3m</TableCell>
-            <TableCell align="right">fg3a</TableCell>
-            <TableCell align="right">ftm</TableCell>
-            <TableCell align="right">fta</TableCell>
-            <TableCell align="right">oreb</TableCell>
-            <TableCell align="right">dreb</TableCell>
-            <TableCell align="right">reb</TableCell>
-            <TableCell align="right">ast</TableCell>
-            <TableCell align="right">stl</TableCell>
-            <TableCell align="right">blk</TableCell>
-            <TableCell align="right">to</TableCell>
-            <TableCell align="right">pf</TableCell>
-            <TableCell align="right">pts</TableCell>
-            <TableCell align="right">fg_pct</TableCell>
-            <TableCell align="right">fg3_pct</TableCell>
-            <TableCell align="right">ft_pct</TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              fgm
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              fga
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              fg3m
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              fg3a
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              ftm
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              fta
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              oreb
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              dreb
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              reb
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              ast
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              stl
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              blk
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              to
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              pf
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              pts
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              fg_pct
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              fg3_pct
+            </TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              ft_pct
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
             <TableRow key={index}>
-              <TableCell align="right">{row.min}</TableCell>
-              <TableCell align="right">{row.fgm}</TableCell>
-              <TableCell align="right">{row.fga}</TableCell>
-              <TableCell align="right">{row.fg3m}</TableCell>
-              <TableCell align="right">{row.fg3a}</TableCell>
-              <TableCell align="right">{row.ftm}</TableCell>
-              <TableCell align="right">{row.fta}</TableCell>
-              <TableCell align="right">{row.oreb}</TableCell>
-              <TableCell align="right">{row.dreb}</TableCell>
-              <TableCell align="right">{row.reb}</TableCell>
-              <TableCell align="right">{row.ast}</TableCell>
-              <TableCell align="right">{row.stl}</TableCell>
-              <TableCell align="right">{row.blk}</TableCell>
-              <TableCell align="right">{row.to}</TableCell>
-              <TableCell align="right">{row.pf}</TableCell>
-              <TableCell align="right">{row.pts}</TableCell>
-              <TableCell align="right">{row.fg_pct}</TableCell>
-              <TableCell align="right">{row.fg3_pct}</TableCell>
-              <TableCell align="right">{row.ft_pct}</TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.min}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.fgm}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.fga}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.fg3m}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.fg3a}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.ftm}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.fta}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.oreb}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.dreb}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.reb}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.ast}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.stl}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.blk}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.to}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.pf}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.pts}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.fg_pct}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.fg3_pct}
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                {row.ft_pct}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -146,5 +239,3 @@ const LastTenGamesStats = ({ stats }) => {
     </TableContainer>
   );
 };
-
-export default LastTenGamesStats;
