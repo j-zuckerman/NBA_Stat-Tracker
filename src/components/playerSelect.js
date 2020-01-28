@@ -18,6 +18,12 @@ const useStyles = makeStyles(theme => ({
 
 export const PlayerSelect = ({ playerStats, handleChange }) => {
   const classes = useStyles();
+  let name;
+  if (playerStats[0])
+    name =
+      playerStats[0].playerDetails.first_name +
+      ' ' +
+      playerStats[0].playerDetails.last_name;
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -28,7 +34,7 @@ export const PlayerSelect = ({ playerStats, handleChange }) => {
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-        Lebron James
+        {name}
       </InputLabel>
       <Select
         labelId="demo-simple-select-outlined-label"

@@ -5,6 +5,8 @@ import NBA_api from '../api/NBA_api';
 import { PlayerSelect } from './playerSelect';
 import { LastTenGamesStats } from './lastTenGamesStats';
 import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
+import { withStyles, ThemeProvider } from '@material-ui/core/styles';
 import { Chart } from './chart';
 
 const Players = () => {
@@ -14,6 +16,7 @@ const Players = () => {
   const [seasonAverages, setSeasonAverages] = useState([]);
   const [lastTenGameStats, setLastTenGameStats] = useState([]);
   const [playersStats, setPlayersStats] = useState([]);
+  const [numOfPlayers, incrementNumOfPlayers] = useState(0);
 
   async function fetchPlayerDetails(id) {
     const res = await NBA_api.get(`/players/${id}`);
@@ -42,6 +45,7 @@ const Players = () => {
     console.log(playerDetails);
     const playerStat = { playerDetails, seasonAverages, lastTenGamesStats };
     setPlayersStats(playersStats => [...playersStats, playerStat]);
+    incrementNumOfPlayers(numOfPlayers + 1);
   }
 
   useEffect(() => {
@@ -50,6 +54,7 @@ const Players = () => {
 
   useEffect(() => {
     fetchFullPlayerStats(237);
+    fetchFullPlayerStats(110);
   }, []);
 
   const handleChange = event => {
@@ -58,6 +63,9 @@ const Players = () => {
 
   return (
     <div>
+      <form noValidate autoComplete="off">
+        <TextField id="player-search" label="Player" variant="outlined" />
+      </form>
       <h1 className="center">’18 to ’19 Season Averages</h1>
       <Divider light />
       {playersStats.map((player, index) => (
@@ -74,5 +82,5 @@ const Players = () => {
     </div>
   );
 };
-//<Chart playerDetails={playersStats} />
+//<Chart numberOfPlayers={numOfPlayers} playerDetails={playersStats} />
 export default Players;

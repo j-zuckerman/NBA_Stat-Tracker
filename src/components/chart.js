@@ -9,28 +9,34 @@ import {
   Legend
 } from 'recharts';
 
-export const Chart = ({ playerDetails }) => {
+export const Chart = ({ playerDetails, numberOfPlayers }) => {
   let data = [];
-  let lastTenGames = [];
-  let counter = 0;
-  playerDetails.forEach((element, index) => {
-    var lastTenGamesStat = element.lastTenGamesStats.data.slice(
-      Math.max(element.lastTenGamesStats.data.length - 10, 1)
-    );
-
-    let gameStats = [];
-    lastTenGamesStat.forEach((game, index) => {
-      gameStats.push({
-        name: playerDetails[counter].playerDetails.first_name,
-        assist: game.ast,
-        gameNumber: index + 1
-      });
-    });
-    counter++;
-    data.push(gameStats);
+  console.log(numberOfPlayers);
+  let listOfLastTenGamesStats = [];
+  playerDetails.forEach(element => {
+    for (let i = 0; i < numberOfPlayers; i++) {
+      let lastTenGamesStats = element.lastTenGamesStats.data.slice(
+        Math.max(element.lastTenGamesStats.data.length - 10, 1)
+      );
+      listOfLastTenGamesStats.push(lastTenGamesStats);
+    }
   });
+
+  console.log(listOfLastTenGamesStats);
+  let dataPoint = [];
+  listOfLastTenGamesStats.forEach(game => {
+    game.forEach(stats => {
+      dataPoint.push({ assist: stats.ast });
+    });
+    data.push(dataPoint);
+    dataPoint = [];
+  });
+
   console.log(data);
 
+  let getVal = x => {
+    return x.assist;
+  };
   return (
     <LineChart
       width={500}
@@ -51,7 +57,7 @@ export const Chart = ({ playerDetails }) => {
 
       <Line type="monotone" dataKey="gameNumber" stroke="#82ca9d" />
 
-      <Line type="monotone" dataKey={data.assist} stroke="#82ca9d" />
+      <Line type="monotone" dataKey={getVal} stroke="#82ca9d" />
     </LineChart>
   );
 };
