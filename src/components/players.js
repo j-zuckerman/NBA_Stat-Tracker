@@ -6,7 +6,7 @@ import { PlayerSelect } from './playerSelect';
 import { LastTenGamesStats } from './lastTenGamesStats';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
-import { withStyles, ThemeProvider } from '@material-ui/core/styles';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Chart } from './chart';
 import { PlayerChips } from './playerChips';
 
@@ -15,7 +15,8 @@ const Players = () => {
   const [playersStats, setPlayersStats] = useState([]);
   const [numOfPlayers, incrementNumOfPlayers] = useState(0);
   const [chipData, setChipData] = useState([]);
-
+  const [searchResults, setSearchResults] = useState([]);
+  const [textFieldValue, setTextFieldValue] = useState('');
   const handleDelete = chipToDelete => () => {
     setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
     setPlayersStats(playersStats =>
@@ -31,6 +32,27 @@ const Players = () => {
 
   const handleChange = event => {
     setSelected(event.target.value);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const res = await NBA_api.get(
+      `/players?search=${textFieldValue}&per_page=1`
+    );
+
+    const id = res.data.data[0].id;
+    setTextFieldValue('');
+    fetchFullPlayerStats(id);
+  };
+
+  const handleTextFieldChange = async e => {
+    const query = e.target.value;
+    setTextFieldValue(query);
+
+    const res = await NBA_api.get(`/players?search=${query}&per_page=5`);
+    console.log(res.data);
+    setSearchResults(res.data.data);
   };
 
   async function fetchPlayerDetails(id) {
@@ -73,15 +95,36 @@ const Players = () => {
   }, [playersStats]);
 
   useEffect(() => {
+    console.log(searchResults);
+  }, [searchResults]);
+
+  useEffect(() => {
     fetchFullPlayerStats(237);
-    fetchFullPlayerStats(110);
+    fetchFullPlayerStats(15);
   }, []);
 
   return (
     <div>
-      <form noValidate autoComplete="off">
-        <TextField id="player-search" label="Player" variant="outlined" />
+      <form onSubmit={handleSubmit}>
+        <Autocomplete
+          id="player-search"
+          freeSolo
+          options={searchResults.map(
+            option => option.first_name + ' ' + option.last_name
+          )}
+          renderInput={params => (
+            <TextField
+              {...params}
+              value={textFieldValue}
+              onChange={handleTextFieldChange}
+              label="Player"
+              variant="outlined"
+              fullWidth
+            />
+          )}
+        />
       </form>
+
       <PlayerChips
         chipData={chipData}
         handleAdd={handleAdd}
