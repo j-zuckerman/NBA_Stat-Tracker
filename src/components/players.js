@@ -8,15 +8,30 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import { withStyles, ThemeProvider } from '@material-ui/core/styles';
 import { Chart } from './chart';
+import { PlayerChips } from './playerChips';
 
 const Players = () => {
-  const [playerID, setPlayerID] = useState(237);
   const [selected, setSelected] = useState(0);
-  const [playerDetails, setPlayerDetails] = useState([]);
-  const [seasonAverages, setSeasonAverages] = useState([]);
-  const [lastTenGameStats, setLastTenGameStats] = useState([]);
   const [playersStats, setPlayersStats] = useState([]);
   const [numOfPlayers, incrementNumOfPlayers] = useState(0);
+  const [chipData, setChipData] = useState([]);
+
+  const handleDelete = chipToDelete => () => {
+    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+    setPlayersStats(playersStats =>
+      playersStats.filter(
+        playersStats => playersStats.playerDetails.id !== chipToDelete.key
+      )
+    );
+  };
+
+  const handleAdd = chipToAdd => {
+    setChipData(chipData => [...chipData, chipToAdd]);
+  };
+
+  const handleChange = event => {
+    setSelected(event.target.value);
+  };
 
   async function fetchPlayerDetails(id) {
     const res = await NBA_api.get(`/players/${id}`);
@@ -45,6 +60,11 @@ const Players = () => {
     console.log(playerDetails);
     const playerStat = { playerDetails, seasonAverages, lastTenGamesStats };
     setPlayersStats(playersStats => [...playersStats, playerStat]);
+    const playerChipData = {
+      name: playerDetails.first_name + ' ' + playerDetails.last_name,
+      key: playerDetails.id
+    };
+    handleAdd(playerChipData);
     incrementNumOfPlayers(numOfPlayers + 1);
   }
 
@@ -57,15 +77,16 @@ const Players = () => {
     fetchFullPlayerStats(110);
   }, []);
 
-  const handleChange = event => {
-    setSelected(event.target.value);
-  };
-
   return (
     <div>
       <form noValidate autoComplete="off">
         <TextField id="player-search" label="Player" variant="outlined" />
       </form>
+      <PlayerChips
+        chipData={chipData}
+        handleAdd={handleAdd}
+        handleDelete={handleDelete}
+      />
       <h1 className="center">’18 to ’19 Season Averages</h1>
       <Divider light />
       {playersStats.map((player, index) => (
