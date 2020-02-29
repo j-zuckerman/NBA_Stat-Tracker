@@ -16,14 +16,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const PlayerSelect = ({ playerStats, handleChange }) => {
+export const PlayerSelect = ({ playersData, handlePlayerChange }) => {
   const classes = useStyles();
   let name;
-  if (playerStats[0])
+  if (playersData[0])
     name =
-      playerStats[0].playerDetails.first_name +
+      playersData[0].playerDetails.first_name +
       ' ' +
-      playerStats[0].playerDetails.last_name;
+      playersData[0].playerDetails.last_name;
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -40,9 +40,9 @@ export const PlayerSelect = ({ playerStats, handleChange }) => {
         labelId="demo-simple-select-outlined-label"
         id="demo-simple-select-outlined"
         labelWidth={labelWidth}
-        onChange={handleChange}
+        onChange={handlePlayerChange}
       >
-        {playerStats.map((player, index) => (
+        {playersData.map((player, index) => (
           <MenuItem value={index}>
             {player.playerDetails.first_name +
               ' ' +

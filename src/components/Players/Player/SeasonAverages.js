@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-export const LastTenGamesStats = ({ playerDetails, selected }) => {
+export const SeasonAverages = ({ seasonAverages }) => {
   let rows = [];
 
   const useStyles = makeStyles({
@@ -32,6 +32,7 @@ export const LastTenGamesStats = ({ playerDetails, selected }) => {
   const classes = useStyles();
 
   function createData(
+    gp,
     min,
     fgm,
     fga,
@@ -53,6 +54,7 @@ export const LastTenGamesStats = ({ playerDetails, selected }) => {
     ft_pct
   ) {
     return {
+      gp,
       min,
       fgm,
       fga,
@@ -74,37 +76,33 @@ export const LastTenGamesStats = ({ playerDetails, selected }) => {
       ft_pct
     };
   }
-  if (playerDetails) {
-    var lastTenStats = playerDetails.lastTenGamesStats.data.slice(
-      Math.max(playerDetails.lastTenGamesStats.data.length - 10, 1)
+  if (seasonAverages) {
+    rows.push(
+      createData(
+        seasonAverages.data[0].games_played,
+        seasonAverages.data[0].min,
+        seasonAverages.data[0].fgm,
+        seasonAverages.data[0].fga,
+        seasonAverages.data[0].fg3m,
+        seasonAverages.data[0].fg3a,
+        seasonAverages.data[0].ftm,
+        seasonAverages.data[0].fta,
+        seasonAverages.data[0].oreb,
+        seasonAverages.data[0].dreb,
+        seasonAverages.data[0].reb,
+        seasonAverages.data[0].ast,
+        seasonAverages.data[0].stl,
+        seasonAverages.data[0].blk,
+        seasonAverages.data[0].turnover,
+        seasonAverages.data[0].pf,
+        seasonAverages.data[0].pts,
+        seasonAverages.data[0].fg_pct,
+        seasonAverages.data[0].fg3_pct,
+        seasonAverages.data[0].ft_pct
+      )
     );
-
-    lastTenStats.forEach(element => {
-      rows.push(
-        createData(
-          element.min,
-          element.fgm,
-          element.fga,
-          element.fg3m,
-          element.fg3a,
-          element.ftm,
-          element.fta,
-          element.oreb,
-          element.dreb,
-          element.reb,
-          element.ast,
-          element.stl,
-          element.blk,
-          element.turnover,
-          element.pf,
-          element.pts,
-          element.fg_pct,
-          element.fg3_pct,
-          element.ft_pct
-        )
-      );
-    });
   }
+  // console.log(rows);
 
   return (
     <TableContainer component={Paper}>
@@ -114,8 +112,10 @@ export const LastTenGamesStats = ({ playerDetails, selected }) => {
       >
         <TableHead>
           <TableRow>
-            <TableCell className={classes.tableHeader}>MIN</TableCell>
-
+            <TableCell className={classes.tableHeader}>GP</TableCell>
+            <TableCell className={classes.tableHeader} align="right">
+              min
+            </TableCell>
             <TableCell className={classes.tableHeader} align="right">
               fgm
             </TableCell>
@@ -175,6 +175,9 @@ export const LastTenGamesStats = ({ playerDetails, selected }) => {
         <TableBody>
           {rows.map((row, index) => (
             <TableRow key={index}>
+              <TableCell className={classes.tableCell} align="right">
+                {row.gp}
+              </TableCell>
               <TableCell className={classes.tableCell} align="right">
                 {row.min}
               </TableCell>

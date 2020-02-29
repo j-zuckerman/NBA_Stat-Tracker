@@ -1,12 +1,11 @@
 import React from 'react';
-import PlayerDetails from './playerDetails';
-import { SeasonAverages } from './seasonAverages';
-import LastTenGamesStats from './lastTenGamesStats';
+import { Details } from './Details';
+import { SeasonAverages } from './SeasonAverages';
 
 const Player = ({ details, seasonAverage }) => {
   return (
     <div>
-      <PlayerDetails details={details} />
+      <Details details={details} />
       <SeasonAverages seasonAverages={seasonAverage} />
     </div>
   );

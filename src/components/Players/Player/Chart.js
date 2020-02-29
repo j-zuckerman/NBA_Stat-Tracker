@@ -31,6 +31,7 @@ export const Chart = ({ playerDetails, numberOfPlayers }) => {
     data.push(dataPoint);
     dataPoint = [];
   });
+  let formattedData = [];
 
   console.log(data);
 

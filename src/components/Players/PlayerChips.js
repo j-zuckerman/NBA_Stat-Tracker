@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { NBAPlayerContext } from '../../context/NBAPlayerContext';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
@@ -15,8 +17,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const PlayerChips = ({ chipData, handleDelete, handleAdd }) => {
+export const PlayerChips = () => {
+  const { chipData, setChipData, setPlayersData } = useContext(
+    NBAPlayerContext
+  );
+
   const classes = useStyles();
+
+  const handleChipDelete = chipToDelete => () => {
+    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+    setPlayersData(playersData =>
+      playersData.filter(
+        playersData => playersData.playerDetails.id !== chipToDelete.key
+      )
+    );
+  };
 
   return (
     <Paper className={classes.root}>
@@ -27,7 +42,7 @@ export const PlayerChips = ({ chipData, handleDelete, handleAdd }) => {
           <Chip
             key={data.key}
             label={data.name}
-            onDelete={handleDelete(data)}
+            onDelete={handleChipDelete(data)}
             className={classes.chip}
           />
         );
