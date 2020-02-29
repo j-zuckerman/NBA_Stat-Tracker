@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/NBA_Stat-Tracker/static/css/main.43b4772c.chunk.css",
-    "main.js": "/NBA_Stat-Tracker/static/js/main.72a91e50.chunk.js",
-    "main.js.map": "/NBA_Stat-Tracker/static/js/main.72a91e50.chunk.js.map",
+    "main.js": "/NBA_Stat-Tracker/static/js/main.9e7a7fdc.chunk.js",
+    "main.js.map": "/NBA_Stat-Tracker/static/js/main.9e7a7fdc.chunk.js.map",
     "runtime-main.js": "/NBA_Stat-Tracker/static/js/runtime-main.62e66559.js",
     "runtime-main.js.map": "/NBA_Stat-Tracker/static/js/runtime-main.62e66559.js.map",
-    "static/js/2.3dd1c18e.chunk.js": "/NBA_Stat-Tracker/static/js/2.3dd1c18e.chunk.js",
-    "static/js/2.3dd1c18e.chunk.js.map": "/NBA_Stat-Tracker/static/js/2.3dd1c18e.chunk.js.map",
+    "static/js/2.99756b17.chunk.js": "/NBA_Stat-Tracker/static/js/2.99756b17.chunk.js",
+    "static/js/2.99756b17.chunk.js.map": "/NBA_Stat-Tracker/static/js/2.99756b17.chunk.js.map",
     "index.html": "/NBA_Stat-Tracker/index.html",
-    "precache-manifest.479996e7f97f6d9dc23f95e92b22d320.js": "/NBA_Stat-Tracker/precache-manifest.479996e7f97f6d9dc23f95e92b22d320.js",
+    "precache-manifest.8cf8b719735edb916583be108b1ca024.js": "/NBA_Stat-Tracker/precache-manifest.8cf8b719735edb916583be108b1ca024.js",
     "service-worker.js": "/NBA_Stat-Tracker/service-worker.js",
     "static/css/main.43b4772c.chunk.css.map": "/NBA_Stat-Tracker/static/css/main.43b4772c.chunk.css.map",
-    "static/js/2.3dd1c18e.chunk.js.LICENSE": "/NBA_Stat-Tracker/static/js/2.3dd1c18e.chunk.js.LICENSE"
+    "static/js/2.99756b17.chunk.js.LICENSE": "/NBA_Stat-Tracker/static/js/2.99756b17.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.62e66559.js",
-    "static/js/2.3dd1c18e.chunk.js",
+    "static/js/2.99756b17.chunk.js",
     "static/css/main.43b4772c.chunk.css",
-    "static/js/main.72a91e50.chunk.js"
+    "static/js/main.9e7a7fdc.chunk.js"
   ]
 }
