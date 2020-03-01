@@ -9,14 +9,13 @@ import Divider from '@material-ui/core/Divider';
 
 import { SearchBar } from './components/Search/SearchBar';
 import { PlayerChips } from './components/Players/PlayerChips';
-import './css/styles.css';
 import { AllGames } from './components/Scoreboard/AllGames';
 import { Navbar } from './components/Navbar/Navbar';
 import { DateNavigation } from './components/Date/DateNavigation';
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/NBA_Scoreboard">
       <Navbar />
       <Switch>
         <Container>

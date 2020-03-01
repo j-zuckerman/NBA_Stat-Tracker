@@ -33,24 +33,26 @@ export const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Autocomplete
-        id="player-search"
-        freeSolo
-        options={searchResults.map(
-          option => option.first_name + ' ' + option.last_name
-        )}
-        renderInput={params => (
-          <TextField
-            {...params}
-            value={textFieldValue}
-            onChange={handleTextFieldChange}
-            label="Player"
-            variant="outlined"
-            fullWidth
-          />
-        )}
-      />
-    </form>
+    <div style={{ margin: 10 }}>
+      <form onSubmit={handleSubmit}>
+        <Autocomplete
+          id="player-search"
+          freeSolo
+          options={searchResults.map(
+            option => option.first_name + ' ' + option.last_name
+          )}
+          renderInput={params => (
+            <TextField
+              {...params}
+              value={textFieldValue}
+              onChange={handleTextFieldChange}
+              label="Player"
+              variant="outlined"
+              fullWidth
+            />
+          )}
+        />
+      </form>
+    </div>
   );
 };

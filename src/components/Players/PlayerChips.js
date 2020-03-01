@@ -34,7 +34,7 @@ export const PlayerChips = () => {
   };
 
   return (
-    <Paper className={classes.root}>
+    <Paper style={{ padding: 5, margin: 10 }} className={classes.root}>
       {chipData.map(data => {
         let icon;
 

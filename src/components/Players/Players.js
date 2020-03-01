@@ -17,7 +17,7 @@ const Players = () => {
 
   return (
     <div>
-      <h1 className="center">’18 to ’19 Season Averages</h1>
+      <h1 style={{ textAlign: 'center' }}>’18 to ’19 Season Averages</h1>
       <Divider />
       {playersData.map(player => (
         <Player
@@ -26,7 +26,9 @@ const Players = () => {
         />
       ))}
 
-      <h1 className="center">All Stats For Last 10 Games Played</h1>
+      <h1 style={{ textAlign: 'center' }}>
+        All Stats For Last 10 Games Played
+      </h1>
       <PlayerSelect
         handlePlayerChange={handlePlayerChange}
         playersData={playersData}
