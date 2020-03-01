@@ -48,23 +48,19 @@ const NBAScoreboardProvider = ({ children }) => {
 
         formattedData.push(gameDetails);
       });
-      console.log(formattedData);
-      console.log(data);
-      console.log(data2);
+
+      setScoreboard(formattedData);
+      console.log(scoreboard);
     } catch (e) {
       console.log(e);
     }
   };
 
-  useEffect(() => {
-    fetchScores('20200228');
-  }, []);
-
   return (
     <NBAScoreboardContext.Provider
       value={{
         scoreboard,
-        setScoreboard
+        fetchScores
       }}
     >
       {children}
