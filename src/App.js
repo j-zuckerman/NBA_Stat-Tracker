@@ -20,7 +20,7 @@ const App = () => {
       <Navbar />
       <Switch>
         <Container>
-          <Route path="/games/:date">
+          <Route path="/games">
             <NBAScoreboardProvider>
               <DateNavigation />
               <Divider />

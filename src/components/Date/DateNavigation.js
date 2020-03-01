@@ -52,7 +52,7 @@ export const DateNavigation = () => {
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 30 }}>
       <Grid container className={classes.root} spacing={4} m={4}>
         <Grid item xs={12}>
           <Grid container justify="space-between" spacing={4}>
