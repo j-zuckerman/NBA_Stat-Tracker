@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "44d3790e7786f981dca07bf0b5bafa6a",
+    "revision": "b169d67183a32bc80559adfe15315bca",
     "url": "/NBA_Scoreboard/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/NBA_Scoreboard/static/js/2.86bbaf05.chunk.js.LICENSE"
   },
   {
-    "revision": "6466fdc2b0b1d6062edb",
-    "url": "/NBA_Scoreboard/static/js/main.0eff2d29.chunk.js"
+    "revision": "28a5bc8379a7fb738ffe",
+    "url": "/NBA_Scoreboard/static/js/main.390ce8c3.chunk.js"
   },
   {
     "revision": "630e78eb17df1ca72f01",
