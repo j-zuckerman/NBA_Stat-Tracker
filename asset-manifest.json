@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/NBA_Scoreboard/static/js/main.47129e8d.chunk.js",
-    "main.js.map": "/NBA_Scoreboard/static/js/main.47129e8d.chunk.js.map",
+    "main.js": "/NBA_Scoreboard/static/js/main.0938a4e6.chunk.js",
+    "main.js.map": "/NBA_Scoreboard/static/js/main.0938a4e6.chunk.js.map",
     "runtime-main.js": "/NBA_Scoreboard/static/js/runtime-main.f176b8a0.js",
     "runtime-main.js.map": "/NBA_Scoreboard/static/js/runtime-main.f176b8a0.js.map",
     "static/js/2.e111b062.chunk.js": "/NBA_Scoreboard/static/js/2.e111b062.chunk.js",
     "static/js/2.e111b062.chunk.js.map": "/NBA_Scoreboard/static/js/2.e111b062.chunk.js.map",
     "index.html": "/NBA_Scoreboard/index.html",
-    "precache-manifest.2654f67384652ae4c04a70398d4f0cb1.js": "/NBA_Scoreboard/precache-manifest.2654f67384652ae4c04a70398d4f0cb1.js",
+    "precache-manifest.48ddcc892572e55fd71e875f39b9484a.js": "/NBA_Scoreboard/precache-manifest.48ddcc892572e55fd71e875f39b9484a.js",
     "service-worker.js": "/NBA_Scoreboard/service-worker.js",
     "static/js/2.e111b062.chunk.js.LICENSE": "/NBA_Scoreboard/static/js/2.e111b062.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.f176b8a0.js",
     "static/js/2.e111b062.chunk.js",
-    "static/js/main.47129e8d.chunk.js"
+    "static/js/main.0938a4e6.chunk.js"
   ]
 }
