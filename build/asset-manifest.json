@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/NBA_Stat-Tracker/static/js/main.15249804.chunk.js",
-    "main.js.map": "/NBA_Stat-Tracker/static/js/main.15249804.chunk.js.map",
-    "runtime-main.js": "/NBA_Stat-Tracker/static/js/runtime-main.62e66559.js",
-    "runtime-main.js.map": "/NBA_Stat-Tracker/static/js/runtime-main.62e66559.js.map",
-    "static/js/2.e111b062.chunk.js": "/NBA_Stat-Tracker/static/js/2.e111b062.chunk.js",
-    "static/js/2.e111b062.chunk.js.map": "/NBA_Stat-Tracker/static/js/2.e111b062.chunk.js.map",
-    "index.html": "/NBA_Stat-Tracker/index.html",
-    "precache-manifest.af3d4030209a15b5691ff9e5324803bc.js": "/NBA_Stat-Tracker/precache-manifest.af3d4030209a15b5691ff9e5324803bc.js",
-    "service-worker.js": "/NBA_Stat-Tracker/service-worker.js",
-    "static/js/2.e111b062.chunk.js.LICENSE": "/NBA_Stat-Tracker/static/js/2.e111b062.chunk.js.LICENSE"
+    "main.js": "/NBA_Scoreboard/static/js/main.547378e0.chunk.js",
+    "main.js.map": "/NBA_Scoreboard/static/js/main.547378e0.chunk.js.map",
+    "runtime-main.js": "/NBA_Scoreboard/static/js/runtime-main.f176b8a0.js",
+    "runtime-main.js.map": "/NBA_Scoreboard/static/js/runtime-main.f176b8a0.js.map",
+    "static/js/2.86bbaf05.chunk.js": "/NBA_Scoreboard/static/js/2.86bbaf05.chunk.js",
+    "static/js/2.86bbaf05.chunk.js.map": "/NBA_Scoreboard/static/js/2.86bbaf05.chunk.js.map",
+    "index.html": "/NBA_Scoreboard/index.html",
+    "precache-manifest.85812d17d3ea07334581e58831676ee6.js": "/NBA_Scoreboard/precache-manifest.85812d17d3ea07334581e58831676ee6.js",
+    "service-worker.js": "/NBA_Scoreboard/service-worker.js",
+    "static/js/2.86bbaf05.chunk.js.LICENSE": "/NBA_Scoreboard/static/js/2.86bbaf05.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.62e66559.js",
-    "static/js/2.e111b062.chunk.js",
-    "static/js/main.15249804.chunk.js"
+    "static/js/runtime-main.f176b8a0.js",
+    "static/js/2.86bbaf05.chunk.js",
+    "static/js/main.547378e0.chunk.js"
   ]
 }
